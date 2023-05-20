@@ -1,0 +1,17 @@
+version: '3'
+services:
+  jobmanager:
+    image: flink:1.17.0-scala_2.12
+    ports:
+      - "8081:8081"
+    expose:
+      - "6123"
+    command: jobmanager
+
+  taskmanager:
+    image: flink:1.17.0-scala_2.12
+    expose:
+      - "6121"
+    command: taskmanager
+    depends_on:
+      - jobmanager
